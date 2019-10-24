@@ -1,5 +1,6 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 struct node {int i; struct node *next;};
 
@@ -22,7 +23,13 @@ void print_list(struct node *n) {
 
 
 
-struct node * insert_front(struct node *n, int i);
+struct node * insert_front(struct node *n, int i) {
+  struct node *x = malloc(sizeof(struct node));
+  x->i = i;
+  x->next = n;
+}
+
+
 struct node * free_list(struct node *n);
 
 
