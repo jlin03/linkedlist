@@ -1,9 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "list.h"
+
 int main() {
 
-  struct node c = {7, NULL};
-  struct node b = {8, &c};
-  struct node a = {9, &b};
+  struct node *a = malloc(sizeof(struct node));
+  a->i = 0;
+  struct node *start = a;
+  print_list(start);
+  for(int i = 1; i < 10; i++) {
+    start = insert_front(start,i);
+    print_list(start);
+  }
 
-  print_list(&a);
-
+  free_list(start);
+  
 }

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "list.h"
 
-struct node {int i; struct node *next;};
 
 void print_list(struct node *n) {
   char s[300] = "";
@@ -17,28 +17,32 @@ void print_list(struct node *n) {
     strcat(s, s2);
     strcat(s, " ");
   }
-  printf("[ %s]",s);
+  printf("[ %s]\n",s);
 }
 
 
 
 
 struct node * insert_front(struct node *n, int i) {
+  printf("Inserting: %d\n", i);
   struct node *x = malloc(sizeof(struct node));
   x->i = i;
   x->next = n;
+  return x;
 }
 
 
-struct node * free_list(struct node *n);
-
-
-int main() {
-
-  struct node c = {7};
-  struct node b = {8, &c};
-  struct node a = {9, &b};
-
-  print_list(&a);
-
+struct node * free_list(struct node *n) {
+    struct node *prev = n;
+    struct node *x = n;
+    printf("Freeing: %d %p\n", x->i, x);
+    prev = x;
+    free(prev);
+    while(x->next) {
+        x = x->next;
+        prev = x;
+        printf("Freeing: %d %p\n", x->i, x);
+        free(prev);
+    }
+    
 }
