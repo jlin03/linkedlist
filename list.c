@@ -44,5 +44,26 @@ struct node * free_list(struct node *n) {
         printf("Freeing: %d %p\n", x->i, x);
         free(prev);
     }
-    
+
+}
+
+struct node * remove_list(struct node *front, int data) {
+  printf("Removing: %d\n", data);
+  struct node *x = front;
+  if(front->i == data) {
+    struct node *newStart = front->next;
+    free(front);
+    return newStart;
+  }
+  else {
+    while(x->next) {
+      struct node *current = x;
+      x = x->next;
+      if(x->i == data) {
+        current->next = x->next;
+        free(x);
+      }
+    }
+    return front;
+  }
 }

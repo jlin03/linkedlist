@@ -13,7 +13,11 @@ int main() {
     start = insert_front(start,i);
     print_list(start);
   }
+  start = remove_list(start,9);
+  start = remove_list(start,7);
+  start = remove_list(start,2);
+  print_list(start);
 
   free_list(start);
-  
+
 }
